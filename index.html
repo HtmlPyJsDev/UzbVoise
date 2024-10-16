@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xush kelibsiz</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Tasodifiy captcha yaratilishi
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("captcha-value").innerText = captcha;
+        }
+
+        function validateCaptcha() {
+            const captchaInput = document.getElementById("captcha-input").value;
+            const captchaValue = document.getElementById("captcha-value").innerText;
+            if (captchaInput === captchaValue) {
+                document.getElementById("error-message").innerText = "";
+                window.location.href = "login.html"; // Kirish yoki ro'yxatdan o'tish sahifasiga o'tish
+            } else {
+                document.getElementById("error-message").innerText = "Noto'g'ri captcha!";
+                generateCaptcha(); // Xato yuz berganda captcha yangilanadi
+            }
+        }
+
+        window.onload = generateCaptcha;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Davom etish uchun captcha kiriting</h2>
+        <div class="captcha-box">
+            <p>Captcha: <span id="captcha-value"></span></p>
+            <input type="text" id="captcha-input" placeholder="Captcha kiriting" class="input-field small">
+        </div>
+        <button onclick="validateCaptcha()" class="button small" style="margin-top: 20px;">Tasdiqlash</button>
+        <p id="error-message" class="error-message"></p>
+    </div>
+    
+    <!-- Avtor: Mumtozbek -->
+</body>
+</html>

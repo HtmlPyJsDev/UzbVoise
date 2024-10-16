@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirish yoki Ro'yxatdan o'tish</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+
+            // localStorage'dan ma'lumotlarni olish
+            const savedEmail = localStorage.getItem("userEmail");
+            const savedPassword = localStorage.getItem("userPassword");
+
+            // Email va parolni tekshirish
+            if (email === savedEmail && password === savedPassword) {
+                alert("Siz muvaffaqiyatli kirdingiz!");
+                window.location.href = "chat.html"; // Muvaffaqiyatli kirgandan so'ng yo'naltirish
+            } else {
+                document.getElementById("login-error-message").innerText = "Noto'g'ri email yoki parol!";
+            }
+        }
+
+        function validateRegistration(event) {
+            event.preventDefault();
+            const username = document.getElementById("register-username").value;
+            const email = document.getElementById("register-email").value;
+            const password = document.getElementById("register-password").value;
+
+            // Rus harflarini tekshirish
+            const russianLetters = /[А-яёЁ]/;
+            if (russianLetters.test(username)) {
+                document.getElementById("register-error-message").innerText = "Login rus harflarini o'z ichiga olmasligi kerak!";
+                return;
+            }
+
+            // Parol uzunligini tekshirish
+            if (password.length < 4) {
+                document.getElementById("register-error-message").innerText = "Parol kamida 4 ta belgidan iborat bo'lishi kerak!";
+                return;
+            }
+
+            // Ma'lumotlarni localStorage'ga saqlash
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userPassword", password);
+
+            alert("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!");
+            document.getElementById("register-form").reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Akauntga kirish</h2>
+        <h2>OpenVoise</h2>
+        <form id="login-form" onsubmit="validateLogin(event)">
+            <div class="input-box">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" placeholder="Emailni kiriting" class="input-field small" required>
+            </div>
+            <div class="input-box">
+                <label for="login-password">Parol:</label>
+                <input type="password" id="login-password" placeholder="Parolni kiriting" class="input-field small" required>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="button small left-button">Kirish</button>
+                <button type="button" class="button small" onclick="toggleRegistrationForm()">Ro'yxatdan o'tish</button>
+            </div>
+            <p id="login-error-message" class="error-message"></p>
+        </form>
+
+        <!-- Ro'yxatdan o'tish formasi, dastlab yashirin -->
+        <div id="register-form-container" style="display:none;">
+            <h2>Ro'yxatdan o'tish</h2>
+            <form id="register-form" onsubmit="validateRegistration(event)">
+                <div class="input-box">
+                    <label for="register-username">Login:</label>
+                    <input type="text" id="register-username" placeholder="Loginni kiriting" class="input-field small" required>
+                </div>
+                <div class="input-box">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" placeholder="Emailni kiriting" class="input-field small" required>
+                </div>
+                <div class="input-box">
+                    <label for="register-password">Parol:</label>
+                    <input type="password" id="register-password" placeholder="Parolni kiriting" class="input-field small" required>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="button small">Ro'yxatdan o'tish</button>
+                    <button type="button" class="button small return-button" onclick="toggleRegistrationForm()">Kirishga qaytish</button>
+                </div>
+            </form>
+            <p id="register-error-message" class="error-message"></p>
+        </div>
+    </div>
+
+    <script>
+        // Ro'yxatdan o'tish formasini ko'rsatish uchun funksiya
+        function toggleRegistrationForm() {
+            const registerForm = document.getElementById('register-form-container');
+            const loginForm = document.getElementById('login-form');
+            if (registerForm.style.display === "none") {
+                registerForm.style.display = "block";
+                loginForm.style.display = "none"; // Kirish formasini yashirish
+            } else {
+                registerForm.style.display = "none";
+                loginForm.style.display = "block"; // Kirish formasini ko'rsatish
+            }
+        }
+    </script>
+    
+    <!-- Avtor: QodirjanovMumtozbek -->
+</body>
+</html>

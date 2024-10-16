@@ -1,0 +1,112 @@
+/* Стиль для всех элементов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 320px;
+}
+
+h2 {
+    color: #202124;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #5f6368;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border 0.2s ease;
+}
+
+.input-field:focus {
+    border-color: #1a73e8;
+    outline: none;
+}
+
+.small {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: #1669c1;
+}
+
+button.small {
+    padding: 8px 15px;
+    font-size: 13px;
+}
+
+/* Новое расположение кнопок */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.left-button {
+    margin-right: 10px;
+}
+
+.error-message {
+    color: #d93025;
+    margin-top: 10px;
+}
+
+/* Скрытая форма регистрации */
+#register-form-container {
+    margin-top: 20px;
+}
+
+/* Выравнивание кнопок в регистрации */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.return-button {
+    margin-left: 10px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tish</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function validateRegistration(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Rus harflarini tekshirish
+            const russianLetters = /[А-яёЁ]/;
+            if (russianLetters.test(username)) {
+                document.getElementById("error-message").innerText = "Login rus harflarini o'z ichiga olmasligi kerak!";
+                return;
+            }
+
+            if (password.length < 4 || password.length > 10) {
+                document.getElementById("error-message").innerText = "Parol 4 dan 10 ta belgi orasida bo'lishi kerak!";
+                return;
+            }
+
+            alert("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!");
+            document.getElementById("registration-form").reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Ro'yxatdan o'tish</h2>
+        <form id="registration-form" onsubmit="validateRegistration(event)">
+            <div class="input-box">
+                <label for="username">Login:</label>
+                <input type="text" id="username" placeholder="Loginni kiriting" class="input-field small" required>
+            </div>
+            <div class="input-box">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Emailni kiriting" class="input-field small" required>
+            </div>
+            <div class="input-box">
+                <label for="password">Parol:</label>
+                <input type="password" id="password" placeholder="Parolni kiriting" class="input-field small" required>
+            </div>
+            <button type="submit" class="button small">Ro'yxatdan o'tish</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+    </div>
+    
+    <!-- Avtor: Mumtozbek -->
+</body>
+</html>
